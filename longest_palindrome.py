@@ -10,11 +10,23 @@ class Solution(object):
             return s
         for i in range(len(s)+1)[::-1]:
             for j in range(len(s)+1 - i):
+                if s[j:i+j] == s[j:i+j][::-1]:
+                    return s[j:i+j]
+        return ''
+
+    def longestPalindrome1(self, s):
+        """
+        :type s: str
+        :rtype: str
+        """
+        if len(s) <= 1:
+            return s
+        for i in range(len(s)+1)[::-1]:
+            for j in range(len(s)+1 - i):
                 if self.isPalindrome(s[j:i+j]):
                     ans = s[j:i+j]
                     return ans
         return ''
-
 
     def isPalindrome(self,s):
         if len(s) <= 1:
