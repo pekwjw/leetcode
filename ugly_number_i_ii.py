@@ -24,9 +24,33 @@ class Solution(object):
             if mn == m5:
                 i5 += 1
         return ans[-1]
- 
 
+class Solution1(object):
+    def isUgly(self, num):
+        """
+        :type num: int
+        :rtype: bool
+        """
+        if num:
+            while num%2 == 0:
+                num = num/2
+            while num%3 == 0:
+                num = num/3
+            while num%5 == 0:
+                num = num/5
+        if num == 1:
+            return True
+        return False
+           
 a = Solution()
 a.nthUglyNumber(1)
 for i in range(20):
-    print a.nthUglyNumber(i) 
+    print a.nthUglyNumber(i)
+
+b = Solution1()
+print b.isUgly(1)
+print b.isUgly(0)
+print b.isUgly(-1)
+for i in range(1,20):
+    print str(i)
+    print b.isUgly(i)
