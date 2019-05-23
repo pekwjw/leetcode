@@ -30,7 +30,7 @@ class Solution(object):
                 break
             else:
                 dp[i][n-1] = 1
-        print dp
+        
         for i in range(m-2,-1,-1):
             for j in range(n-2,-1,-1):
                 if obstacleGrid[i][j] == 1:
@@ -40,5 +40,5 @@ class Solution(object):
         return dp[0][0]
 
 a = Solution()
-print a.uniquePaths(3,2)
-print a.uniquePathsWithObstacles([[0,0,0],[0,1,0],[0,0,0]])
+print a.uniquePaths(7,3)
+print a.uniquePathsWithObstacles([[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0]])
