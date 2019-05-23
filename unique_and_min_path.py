@@ -30,7 +30,7 @@ class Solution(object):
                 break
             else:
                 dp[i][n-1] = 1
-        
+
         for i in range(m-2,-1,-1):
             for j in range(n-2,-1,-1):
                 if obstacleGrid[i][j] == 1:
@@ -39,6 +39,25 @@ class Solution(object):
                     dp[i][j] = dp[i+1][j] + dp[i][j+1]
         return dp[0][0]
 
+    def minPathSum(self, grid):
+        """
+        :type grid: List[List[int]]
+        :rtype: int
+        """
+        m,n = len(grid),len(grid[0])
+        dp = [[ 0 for i in range(n)] for j in range(m)]
+        dp[0][0] = grid[0][0]
+        for i in range(1,m):
+            dp[i][0] = grid[i][0]+dp[i-1][0]
+        for j in range(1,n):
+            dp[0][j] = grid[0][j]+dp[0][j-1]
+
+        for i in range(1,m):
+            for j in range(1,n):
+                dp[i][j] = min(dp[i-1][j],dp[i][j-1])+grid[i][j]
+        return dp[m-1][n-1]
+
 a = Solution()
 print a.uniquePaths(7,3)
 print a.uniquePathsWithObstacles([[0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 1, 0]])
+print a.minPathSum([[1,3,1],[1,5,1],[4,2,1]])
