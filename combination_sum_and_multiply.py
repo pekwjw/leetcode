@@ -35,9 +35,15 @@ class Solution(object):
         carry = 0
         res = ""
         for i,tmp in enumerate(ans):
-            ans[i] = str((tmp+carry)%10)
+            ans[i] = (tmp+carry)%10
             carry = (tmp+carry)/10
-        return "".join(ans[::-1])
-
+        carry = 1
+        for i in ans[::-1]:
+            if carry and i == 0:
+                pass
+            else:
+                carry = 0
+                res += str(i)
+        return res
 a = Solution()
 print a.multiply("999","999") 
