@@ -54,3 +54,17 @@ class Solution(object):
         self.dfs(root.left,ans)
         ans.append(root.val)
         self.dfs(root.right,ans)
+
+    def isValidBST(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        return self.judge(root,-float('inf'),float('inf'))
+    
+    def judge(self,root,minv,maxv):
+        if not root:
+            return True
+        if root.val <= minv or root.val >= maxv:
+            return False
+        return self.judge(root.left,minv,root.val) and self.judge(root.right,root.val,maxv)
