@@ -65,7 +65,7 @@ class Solution(object):
         if not matrix:
             return 0
         m, n = len(matrix),len(matrix[0])
-        dp = [[0 if matrix[j][i] == '0' else 1 for j in range(n)] for i in range(m)]
+        dp = [[0 if matrix[i][j] == '0' else 1 for j in range(n)] for i in range(m)]
         for i in range(1,m):
             for j in range(1,n):
                 if matrix[i][j] == '1':
