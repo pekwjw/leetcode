@@ -26,18 +26,18 @@ class Solution(object):
         :type n: int
         :rtype: ListNode
         """
-        if not head :
+        if not head:
             return None
         index = ans = head
         for i in range(n):
             index = index.next
-        if not index.next:
-            return head
-
+        if not index:
+            return head.next
+        
         while index.next:
-            ans = ans.next
             index = index.next
-        ans.next = index.next
+            ans = ans.next
+        ans.next = ans.next.next
         return head
 
 if __name__ == "__main__": 
