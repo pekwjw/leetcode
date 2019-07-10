@@ -31,7 +31,7 @@ class Solution(object):
         index = ans = head
         for i in range(n):
             index = index.next
-        if not q:
+        if not index.next:
             return head.next
 
         while index.next:
