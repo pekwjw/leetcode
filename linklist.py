@@ -32,7 +32,7 @@ class Solution(object):
         for i in range(n):
             index = index.next
         if not index.next:
-            return head.next
+            return head
 
         while index.next:
             ans = ans.next
