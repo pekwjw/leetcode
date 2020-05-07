@@ -21,29 +21,31 @@ class DoubleLinkedList:
             self.head = None
             self.tail = None
             return
-        elif node == self.head:
+        if node == self.head:
             node.next.prev = None
             self.head = node.next
             return
-        elif node == self.tail:
+        if node == self.tail:
             node.prev.next = None
             self.tail = node.prev
             return
-        else:
-            node.prev.next = node.next
-            node.next.prev = node.prev
-            return
+
+        node.prev.next = node.next
+        node.next.prev = node.prev
+
 
     def addFirst(self, node):
-        node.prev = None
         if not self.head:
             self.head = node
             self.tail = node
             node.next = None
+            node.prev = None
             return
         else:
             node.next = self.head
+            self.head.prev = node
             self.head = node
+            node.prev = None
             return
 
 class LRUCache(object):
@@ -65,7 +67,7 @@ class LRUCache(object):
         if (key in self.P) and self.P[key]:
             self.cache.remove(self.P[key])
             self.cache.addFirst(self.P[key])
-            return self.P[key].val
+            return self.P[key].v
         else:
             return -1
 
@@ -78,7 +80,7 @@ class LRUCache(object):
         if key in self.P:
             self.cache.remove(self.P[key])
             self.cache.addFirst(self.P[key])
-            self.P[key].val = value
+            self.P[key].v = value
         else:
             node = Node(key,value)
             self.P[key] = node
@@ -86,7 +88,7 @@ class LRUCache(object):
             self.size += 1
             if self.size > self.cap:
                 self.size -= 1
-                del self.P[self.cache.tail.key]
+                del self.P[self.cache.tail.k]
                 self.cache.removeLast()
 
 # Your LRUCache object will be instantiated and called as such:
