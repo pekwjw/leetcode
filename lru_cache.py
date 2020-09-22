@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 class Node(object):
     def __init__(self, k, v):
         self.k = k
@@ -5,7 +7,7 @@ class Node(object):
         self.prev = None
         self.Next = None
 
-class DoubleLinkedList:
+class DoubleList():
     def __init__(self):
         self.head = None
         self.tail = None
@@ -19,34 +21,36 @@ class DoubleLinkedList:
     def remove(self, node):
         if self.head == self.tail:
             self.head = None
-            self.tail = None
+            self.head = None
             return
+
         if node == self.head:
-            node.next.prev = None
-            self.head = node.next
+            node.Next.prev = None
+            self.head = node.Next
             return
+
         if node == self.tail:
-            node.prev.next = None
+            node.prev.Next = None
             self.tail = node.prev
             return
 
-        node.prev.next = node.next
-        node.next.prev = node.prev
-
+        node.prev.Next = node.Next
+        node.Next.prev = node.prev
 
     def addFirst(self, node):
         if not self.head:
             self.head = node
             self.tail = node
-            node.next = None
+            node.Next = None
             node.prev = None
             return
         else:
-            node.next = self.head
+            node.Next = self.head
             self.head.prev = node
             self.head = node
             node.prev = None
             return
+
 
 class LRUCache(object):
 
@@ -57,7 +61,8 @@ class LRUCache(object):
         self.cap = capacity
         self.size = 0
         self.P = dict()
-        self.cache = DoubleLinkedList()
+        self.cache = DoubleList()
+
 
     def get(self, key):
         """
@@ -81,8 +86,8 @@ class LRUCache(object):
             self.cache.remove(self.P[key])
             self.cache.addFirst(self.P[key])
             self.P[key].v = value
-        else:
-            node = Node(key,value)
+        else :
+            node = Node(key, value)
             self.P[key] = node
             self.cache.addFirst(node)
             self.size += 1
@@ -90,7 +95,7 @@ class LRUCache(object):
                 self.size -= 1
                 del self.P[self.cache.tail.k]
                 self.cache.removeLast()
-
+                
 # Your LRUCache object will be instantiated and called as such:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
